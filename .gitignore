@@ -3,3 +3,6 @@
 Thumbs.db
 .claude/
 _src/
+
+.vercel
+.env*
