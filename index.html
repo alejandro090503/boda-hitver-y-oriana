@@ -89,7 +89,7 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:500;color:var(--accent);padding:
   text-transform:uppercase;
   color:var(--gold-deep);
   padding-left:.55em;
-  margin-bottom:32px;
+  margin-bottom:22px;
   display:inline-block;
 }
 .eyebrow::before,.eyebrow::after{
@@ -154,11 +154,11 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:500;color:var(--accent);padding:
 
 /* ============ LLUVIA DE NOTAS MUSICALES (parte superior) ============ */
 #notes{
-  position:fixed;left:0;right:0;top:0;
-  height:46vh;pointer-events:none;z-index:46;overflow:hidden;
+  position:fixed;right:4px;bottom:86px;
+  width:164px;height:240px;pointer-events:none;z-index:45;overflow:hidden;
 }
 .note{
-  position:absolute;top:-44px;
+  position:absolute;bottom:0;
   color:var(--gold);opacity:0;
   will-change:transform,opacity;
   filter:drop-shadow(0 2px 6px rgba(46,61,36,.28));
@@ -247,19 +247,6 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:500;color:var(--accent);padding:
   color:#FFFFF0;padding:32px 32px clamp(58px,9vh,104px);max-width:960px;
 }
 .hero-ornament-top{display:block;margin:0 auto 28px;width:180px;height:auto;opacity:.75}
-.hero-eyebrow{
-  font-family:var(--sans);font-weight:400;
-  font-size:11px;letter-spacing:.6em;
-  text-transform:uppercase;color:var(--gold-soft);
-  padding-left:.6em;margin-bottom:40px;display:inline-block;
-}
-.hero-eyebrow::before,.hero-eyebrow::after{
-  content:"";display:inline-block;width:28px;height:1px;
-  background:var(--gold-soft);vertical-align:middle;
-  margin:0 12px 3px 0;
-}
-.hero-eyebrow::after{margin:0 0 3px 12px}
-
 .hero-name{
   font-family:var(--display);font-style:italic;font-weight:400;
   font-size:clamp(62px,12vw,148px);line-height:.9;color:#FFFFF0;
@@ -283,15 +270,9 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:500;color:var(--accent);padding:
   display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap;
 }
 .hero-date .sep{color:var(--gold-soft);font-size:.6em;letter-spacing:0}
-.hero-place{
-  font-family:var(--sans);font-weight:500;
-  font-size:14px;letter-spacing:.45em;
-  color:rgba(255,255,240,.95);margin-top:28px;
-  padding-left:.45em;text-transform:uppercase;
-}
 /* ============ SEAMS — transiciones suaves entre secciones ============ */
 .seam{
-  height:72px;
+  height:52px;
   background:linear-gradient(to bottom,
     var(--from,var(--bg)) 0%,
     color-mix(in srgb, var(--from,var(--bg)) 50%, var(--to,var(--surface)) 50%) 50%,
@@ -300,8 +281,8 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:500;color:var(--accent);padding:
 }
 
 /* ============ SECCIONES BASE ============ */
-.section-bg{background:var(--bg);padding:min(18vh,170px) 0;position:relative;contain:layout paint}
-.section-surface{background:var(--surface);padding:min(18vh,170px) 0;position:relative;contain:layout paint}
+.section-bg{background:var(--bg);padding:min(11vh,104px) 0;position:relative;contain:layout paint}
+.section-surface{background:var(--surface);padding:min(11vh,104px) 0;position:relative;contain:layout paint}
 /* Dot texture */
 /* Corner bracket ornaments — difuminados, sin bordes duros */
 .section-bg::after,.section-surface::after,.section-paper::after{
@@ -318,7 +299,7 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:500;color:var(--accent);padding:
   filter:blur(0.9px);
   pointer-events:none;z-index:0;
 }
-.section-paper{background:var(--paper);padding:min(18vh,170px) 0;position:relative;contain:layout paint}
+.section-paper{background:var(--paper);padding:min(11vh,104px) 0;position:relative;contain:layout paint}
 
 /* ============ VERSO ============ */
 .verse-wrap{text-align:center;max-width:820px;margin:0 auto}
@@ -332,7 +313,7 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:500;color:var(--accent);padding:
 .verse-text{
   font-family:var(--display);font-style:italic;font-weight:400;
   font-size:clamp(24px,3.2vw,38px);line-height:1.45;
-  color:var(--accent-deep);letter-spacing:-.01em;margin-bottom:48px;
+  color:var(--accent-deep);letter-spacing:-.01em;margin-bottom:32px;
 }
 .verse-text .word{display:inline-block}
 .verse-sig{
@@ -359,7 +340,7 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:500;color:var(--accent);padding:
 }
 /* ============ FECHA HERO ============ */
 .date-hero{
-  position:relative;padding:min(22vh,220px) 0;
+  position:relative;padding:min(13vh,124px) 0;
   background:#2e3d24;
   color:#FFFFF0;text-align:center;isolation:isolate;overflow:hidden;
 }
@@ -456,7 +437,7 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:500;color:var(--accent);padding:
 /* ============ FAMILIA ============ */
 .familia{text-align:center}
 .familia h2{font-size:clamp(38px,5.5vw,60px);margin-bottom:12px}
-.familia-sub{font-family:var(--script);color:var(--gold);font-size:28px;margin-bottom:56px;line-height:1}
+.familia-sub{font-family:var(--script);color:var(--gold);font-size:28px;margin-bottom:38px;line-height:1}
 .familia-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:48px 80px;max-width:900px;margin:0 auto}
 .familia-group{flex:1;min-width:260px;max-width:380px;text-align:center}
 .familia-group-title{font-family:var(--italiana);font-size:11px;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);padding-left:.5em;margin-bottom:20px;position:relative;display:inline-block}
@@ -470,7 +451,7 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:500;color:var(--accent);padding:
 
 /* ============ UBICACIONES ============ */
 .locs h2{text-align:center;font-size:clamp(38px,5.5vw,64px);margin-bottom:20px}
-.locs-sub{text-align:center;font-family:var(--italiana);font-size:18px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-soft);padding-left:.3em;margin-bottom:80px}
+.locs-sub{text-align:center;font-family:var(--italiana);font-size:18px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-soft);padding-left:.3em;margin-bottom:52px}
 .locs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:48px;max-width:1100px;margin:0 auto}
 .loc-card{
   background:var(--paper);padding:56px 40px 48px;
@@ -510,8 +491,8 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:500;color:var(--accent);padding:
 .loc-addr{font-family:var(--serif);font-size:15px;color:var(--ink-soft);line-height:1.7;margin-bottom:32px;font-weight:400}
 .loc-btn{
   display:inline-block;padding:15px 34px;
-  border:1px solid var(--accent-deep);background:transparent;
-  font-family:var(--sans);font-size:11px;font-weight:500;
+  border:1.5px solid var(--accent-deep);background:transparent;
+  font-family:var(--sans);font-size:11px;font-weight:600;
   letter-spacing:.4em;text-transform:uppercase;
   color:var(--accent-deep);text-decoration:none;
   padding-left:calc(34px + .4em);
@@ -527,9 +508,9 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:500;color:var(--accent);padding:
 .loc-btn:hover::before{transform:translateY(0)}
 
 /* ============ COUNTDOWN — una sola fila sobre panel opaco ============ */
-.countdown{text-align:center;padding:min(14vh,120px) 0}
+.countdown{text-align:center;padding:min(9vh,84px) 0}
 .countdown h2{font-size:clamp(32px,4.5vw,52px);margin-bottom:20px}
-.countdown-sub{font-family:var(--script);color:var(--gold-deep);font-size:32px;margin-bottom:48px;line-height:1}
+.countdown-sub{font-family:var(--script);color:var(--gold-deep);font-size:32px;margin-bottom:34px;line-height:1}
 .countdown-panel{
   max-width:820px;margin:0 auto;position:relative;
   background:linear-gradient(160deg,#161f0f 0%,#22301a 55%,#161f0f 100%);
@@ -605,9 +586,9 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:500;color:var(--accent);padding:
 .swatch-n{font-family:var(--sans);font-size:8px;letter-spacing:.4em;text-transform:uppercase;color:var(--ink-soft);padding-left:.4em;font-weight:500}
 
 /* ============ GALLERY — RUEDA DE LA FORTUNA ============ */
-.gallery{padding:min(14vh,130px) 0 min(18vh,170px)}
+.gallery{padding:min(9vh,84px) 0 min(11vh,104px)}
 .gallery .container{max-width:none;padding:0}
-.gallery-head{text-align:center;margin-bottom:56px}
+.gallery-head{text-align:center;margin-bottom:38px}
 .gallery h2{font-size:clamp(38px,5.5vw,60px);margin-bottom:20px}
 .gallery-sub{font-family:var(--script);color:var(--gold);font-size:32px;line-height:1}
 
@@ -617,7 +598,7 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:500;color:var(--accent);padding:
   width:100%;
   height:580px;
   max-width:1080px;
-  margin:40px auto 0;
+  margin:24px auto 0;
   perspective:2000px;
   transform-style:preserve-3d;
   overflow:visible;
@@ -661,7 +642,7 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:500;color:var(--accent);padding:
   letter-spacing:3px;
   color:var(--accent);
   text-align:center;
-  margin-top:34px;
+  margin-top:20px;
   opacity:.72;
 }
 @media (max-width:520px){
@@ -684,7 +665,7 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:500;color:var(--accent);padding:
 }
 
 /* ============ GIFTS ============ */
-.gifts .gifts-head{text-align:center;max-width:740px;margin:0 auto 80px}
+.gifts .gifts-head{text-align:center;max-width:740px;margin:0 auto 52px}
 .gifts h2{font-size:clamp(38px,5.5vw,60px);margin-bottom:20px}
 .gifts-sub{font-family:var(--display);font-style:italic;font-size:clamp(18px,2vw,22px);color:var(--ink-soft);margin-top:20px;font-weight:400}
 .gifts-panel{
@@ -742,7 +723,7 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:500;color:var(--accent);padding:
   font-family:var(--sans);font-size:11px;font-weight:600;
   letter-spacing:.16em;text-transform:uppercase;
   color:var(--gold-deep);background:none;border:none;cursor:pointer;
-  border-bottom:1px solid var(--hair-gold);padding:6px 0 3px;
+  border-bottom:1.5px solid color-mix(in srgb, var(--gold-deep) 55%, transparent);padding:6px 0 3px;
   transition:color .35s,border-color .35s;flex-shrink:0;min-height:32px;
 }
 .gift-copy:hover{color:var(--accent-deep);border-bottom-color:var(--accent-deep)}
@@ -799,8 +780,8 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:500;color:var(--accent);padding:
 .clabe{font-variant-numeric:tabular-nums;letter-spacing:.1em;font-weight:500}
 .gift-btn{
   display:inline-block;margin-top:auto;padding:14px 30px;
-  border:1px solid var(--accent-deep);background:transparent;
-  font-family:var(--sans);font-size:10px;font-weight:500;
+  border:1.5px solid var(--accent-deep);background:transparent;
+  font-family:var(--sans);font-size:10px;font-weight:600;
   letter-spacing:.4em;text-transform:uppercase;
   color:var(--accent-deep);text-decoration:none;cursor:pointer;
   padding-left:calc(30px + .4em);
@@ -822,7 +803,7 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:500;color:var(--accent);padding:
 .album-text{
   font-family:var(--serif);font-style:italic;font-weight:400;
   font-size:clamp(17px,1.9vw,20px);
-  line-height:1.8;color:var(--ink);margin-bottom:52px;
+  line-height:1.8;color:var(--ink);margin-bottom:34px;
 }
 .album-qr{
   display:inline-block;padding:32px;background:var(--paper);
@@ -873,7 +854,7 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:500;color:var(--accent);padding:
 .rsvp-fields{display:flex;flex-direction:column;gap:10px;max-width:420px;margin:0 auto 20px;}
 .rsvp-input{
   width:100%;padding:15px 20px;
-  border:1.5px solid rgba(157,108,60,.28);border-radius:12px;
+  border:1.5px solid rgba(157,108,60,.50);border-radius:12px;
   background:rgba(255,255,255,.78);
   font-family:var(--sans);font-size:15px;font-weight:500;color:var(--ink);
   letter-spacing:.03em;outline:none;
@@ -886,7 +867,7 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:500;color:var(--accent);padding:
   display:flex;align-items:center;justify-content:center;gap:12px;
   width:100%;max-width:420px;margin:0 auto;
   padding:18px 36px;border-radius:50px;
-  border:1.5px solid rgba(157,108,60,.5);
+  border:1.5px solid rgba(157,108,60,.75);
   background:linear-gradient(135deg,rgba(107,132,45,.18) 0%,rgba(157,108,60,.12) 100%);
   font-family:var(--sans);font-size:12px;font-weight:700;
   letter-spacing:.35em;text-transform:uppercase;
@@ -904,7 +885,7 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:500;color:var(--accent);padding:
 .rsvp-pases-num{font-family:var(--display);font-style:italic;font-size:clamp(36px,5vw,52px);color:var(--gold-deep);line-height:1;}
 .rsvp-deadline{display:inline-flex;align-items:center;gap:8px;margin-top:26px;font-family:var(--sans);font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold-deep);padding-left:.4em;font-weight:600;}
 .rsvp-toggle{display:flex;gap:10px;max-width:420px;margin:0 auto 20px;}
-.rsvp-toggle-btn{flex:1;padding:14px 8px;border:1.5px solid rgba(157,108,60,.28);background:rgba(255,255,255,.6);cursor:pointer;font-family:var(--serif);font-style:italic;font-size:17px;color:var(--ink);border-radius:8px;transition:all .25s;}
+.rsvp-toggle-btn{flex:1;padding:14px 8px;border:1.5px solid rgba(157,108,60,.55);background:rgba(255,255,255,.6);cursor:pointer;font-family:var(--serif);font-style:italic;font-size:17px;color:var(--ink);border-radius:8px;transition:all .25s;}
 .rsvp-toggle-btn:disabled{opacity:.45;cursor:not-allowed;}
 .rsvp-toggle-btn.rsvp-toggle-selected-yes{background:rgba(107,155,100,.14);border-color:#4a7848;color:#2F5A28;}
 .rsvp-toggle-btn.rsvp-toggle-selected-no{background:rgba(122,82,41,.09);border-color:var(--gold-deep);color:var(--gold-deep);}
@@ -916,7 +897,7 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:500;color:var(--accent);padding:
 .rsvp-person-card[data-choice="no"]{border-color:var(--gold-deep);background:rgba(122,82,41,.09);}
 .rsvp-person-name{font-family:var(--display);font-size:19px;font-weight:600;color:var(--ink);letter-spacing:.01em;text-align:center;}
 .rsvp-person-toggle{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-.rsvp-mini-btn{padding:11px 12px;border:1.5px solid rgba(157,108,60,.30);border-radius:10px;background:rgba(255,255,255,.6);font-family:var(--sans);font-size:12px;font-weight:600;color:var(--ink-soft);letter-spacing:.06em;cursor:pointer;transition:all .25s;text-transform:uppercase;-webkit-tap-highlight-color:transparent;min-height:44px;}
+.rsvp-mini-btn{padding:11px 12px;border:1.5px solid rgba(157,108,60,.55);border-radius:10px;background:rgba(255,255,255,.6);font-family:var(--sans);font-size:12px;font-weight:600;color:var(--ink-soft);letter-spacing:.06em;cursor:pointer;transition:all .25s;text-transform:uppercase;-webkit-tap-highlight-color:transparent;min-height:44px;}
 .rsvp-mini-btn:hover:not(:disabled){border-color:var(--gold);background:rgba(255,255,255,.92);}
 .rsvp-mini-btn:disabled{opacity:.5;cursor:not-allowed;}
 .rsvp-mini-yes-on{background:#2F5A28!important;border-color:#2F5A28!important;color:#fff!important;}
@@ -925,7 +906,7 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:500;color:var(--accent);padding:
 /* ============ FOOTER ============ */
 footer{
   background:linear-gradient(180deg, var(--accent-deep) 0%, #3f5233 100%);
-  color:#EFF1E2;padding:min(14vh,130px) 0 52px;text-align:center;
+  color:#EFF1E2;padding:min(10vh,92px) 0 46px;text-align:center;
   position:relative;overflow:hidden;
 }
 footer::before{
@@ -947,7 +928,7 @@ footer::before{
   padding-left:.5em;font-variant-numeric:tabular-nums;
 }
 .footer-credit{
-  margin-top:72px;padding-top:36px;
+  margin-top:48px;padding-top:30px;
   border-top:1px solid color-mix(in srgb, currentColor 14%, transparent);
   display:flex;flex-direction:column;align-items:center;gap:10px;
   opacity:.5;transition:opacity .5s ease;
@@ -976,16 +957,16 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
   .story-initials::before,.story-initials::after{width:24px}
   .story-initials::before{left:-40px}
   .story-initials::after{right:-40px}
-  .seam{height:60px}
+  .seam{height:42px}
 }
 @media (max-width:480px){
   .hero-content{padding:40px 20px}
   .cd-block{min-width:82px;padding:22px 16px}
 }
 /* ============ ITINERARIO ============ */
-.itinerary{text-align:center;padding:min(16vh,150px) 0;contain:none;overflow:visible}
+.itinerary{text-align:center;padding:min(10vh,94px) 0;contain:none;overflow:visible}
 .itinerary h2{font-size:clamp(32px,4.5vw,52px);margin-bottom:12px}
-.itinerary-sub{font-family:var(--script);color:var(--gold);font-size:30px;margin-bottom:48px;line-height:1}
+.itinerary-sub{font-family:var(--script);color:var(--gold);font-size:30px;margin-bottom:34px;line-height:1}
 
 /* ====== ITINERARIO estilo cristal-humberto (itv3) ====== */
 .itv3{
@@ -1019,7 +1000,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
 .itv3-item{
   position:relative;z-index:2;
   display:flex;flex-direction:column;align-items:center;
-  text-align:center;padding:30px 16px 4px;width:100%;
+  text-align:center;padding:22px 16px 4px;width:100%;
 }
 .itv3-gem{
   width:11px;height:11px;
@@ -1149,7 +1130,7 @@ html.env-locked,body.env-locked{overflow:hidden;height:100%}
   width:100%;height:100%;border-radius:50%;position:relative;
   animation:vinylSpin 9s linear infinite;
 }
-.vinyl-btn.is-playing .vinyl-spin{animation-duration:1.8s}
+.vinyl-btn.is-playing .vinyl-spin{animation-duration:1.05s}
 @keyframes vinylSpin{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion:reduce){.vinyl-spin{animation:none}}
 .vinyl-disc{width:100%;height:100%;border-radius:50%;overflow:hidden;position:relative;
@@ -1212,7 +1193,7 @@ html.env-locked,body.env-locked{overflow:hidden;height:100%}
   border:1px solid var(--gold);opacity:.3;
   animation:vinylPulse 3s ease-in-out infinite;
 }
-.vinyl-btn.is-playing::after{animation-duration:1.6s}
+.vinyl-btn.is-playing::after{animation-duration:1.05s}
 @keyframes vinylPulse{0%,100%{transform:scale(1);opacity:.3}50%{transform:scale(1.12);opacity:.05}}
 .vinyl-tonearm{
   position:absolute;top:-4px;right:-2px;width:24px;height:34px;
@@ -1297,7 +1278,7 @@ html.env-locked,body.env-locked{overflow:hidden;height:100%}
 .env-desc{font-size:15px;font-weight:500}
 .album-link{font-size:14px}
 .wheel-hint{font-size:15px;color:var(--ink-soft);opacity:.95;font-weight:500}
-.eyebrow,.hero-eyebrow,.date-eyebrow{font-size:12px}
+.eyebrow,.date-eyebrow{font-size:12px}
 .loc-type{font-size:11px}
 .swatch-n{font-size:9px}
 .familia-group-title,.familia-special-title{font-size:12px}
@@ -1315,6 +1296,32 @@ html.env-locked,body.env-locked{overflow:hidden;height:100%}
 @media (max-width:520px){
   .hero-date{font-size:15px;letter-spacing:.16em;padding-left:.16em;gap:9px;flex-wrap:nowrap}
   .cd-lbl{font-size:clamp(8px,2.1vw,10px);letter-spacing:.08em;padding-left:.08em}
+}
+
+/* ============ AÑADIDOS PEDIDOS POR LOS NOVIOS ============ */
+.hero-frase{
+  font-family:var(--serif);font-style:italic;font-weight:500;
+  font-size:clamp(16px,2vw,20px);line-height:1.55;
+  color:rgba(255,255,240,.94);
+  max-width:26ch;margin:14px auto 0;
+  text-shadow:0 2px 12px rgba(20,26,14,.7);
+}
+.verse-foto{
+  margin:38px auto 0;max-width:min(360px,80vw);
+  position:relative;padding:10px;
+  border:1px solid var(--hair-gold);background:var(--paper);
+  box-shadow:0 1px 2px rgba(46,61,36,.05),0 16px 44px -18px rgba(46,61,36,.28);
+}
+.verse-foto img{display:block;width:100%;height:auto}
+.verse-foto::after{
+  content:"";position:absolute;inset:18px;
+  border:1px solid rgba(211,177,131,.42);pointer-events:none;
+}
+.footer-despedida{
+  font-family:var(--serif);font-style:italic;font-weight:500;
+  font-size:clamp(16px,1.9vw,19px);line-height:1.6;
+  color:rgba(255,255,240,.86);
+  max-width:34ch;margin:26px auto 0;
 }
 </style>
 </head>
@@ -1404,6 +1411,7 @@ html.env-locked,body.env-locked{overflow:hidden;height:100%}
         <span class="hero-and">&amp;</span>
         <span class="hero-name-l" data-split="Oriana"></span>
       </h1>
+      <p class="hero-frase">Con inmensa alegría queremos compartir este día contigo.</p>
       <div class="hero-date" data-anim="hero-date">
         <span>12</span><span class="sep">·</span><span>Septiembre</span><span class="sep">·</span><span>2026</span>
       </div>
@@ -1430,8 +1438,11 @@ html.env-locked,body.env-locked{overflow:hidden;height:100%}
           </g>
         </svg>
         <span class="verse-quote">&ldquo;</span>
-        <p class="verse-text" style="font-size:clamp(19px,2.7vw,26px)">Nos conocimos sin prisa y aprendimos a querernos despacio, en lo de todos los días: en los planes que salieron bien <em>y también en los que no</em>. De todo eso está hecho lo que hoy venimos a prometernos.</p>
+        <p class="verse-text" style="font-size:clamp(19px,2.7vw,26px)">Nos conocimos sin prisa y aprendimos a querernos despacio, en lo de todos los días: en los planes que salieron bien y también en los que no. Y hoy elegimos caminar juntos para siempre.</p>
         <div class="verse-sig">Nuestra promesa</div>
+        <figure class="verse-foto">
+          <img src="promesa.jpg" alt="Hitver y Oriana" loading="lazy">
+        </figure>
       </div>
     </div>
   </section>
@@ -1796,7 +1807,7 @@ html.env-locked,body.env-locked{overflow:hidden;height:100%}
 
           <div class="eyebrow">Confirma tu asistencia</div>
           <h2 class="rsvp-title">Tu presencia <em>lo</em> es todo</h2>
-          <p class="rsvp-text">Por favor confírmanos tu asistencia antes del <strong>15 de Agosto 2026</strong>. Nos encantará saber que estarás con nosotros.</p>
+          <p class="rsvp-text">Por favor confírmanos tu asistencia antes del <strong>15 de agosto de 2026</strong>. Nos encantará saber que estarás con nosotros.</p>
 
           <div class="rsvp-divider">
             <svg class="rsvp-divider-heart" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/></svg>
@@ -1805,7 +1816,7 @@ html.env-locked,body.env-locked{overflow:hidden;height:100%}
           <p id="rsvp-pases-note"></p>
 
           <div class="rsvp-pases-display" id="rsvp-pases-display">
-            <div class="rsvp-pases-label">Pases de entrada</div>
+            <div class="rsvp-pases-label">Tus pases reservados</div>
             <div class="rsvp-pases-num" id="rsvp-pases-num">1</div>
           </div>
 
@@ -1826,7 +1837,7 @@ html.env-locked,body.env-locked{overflow:hidden;height:100%}
 
           <div class="rsvp-deadline">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5z"/></svg>
-            Fecha límite · 15 Agosto 2026
+            Fecha límite · 15 de agosto de 2026
           </div>
         </div>
       </div>
@@ -1846,6 +1857,7 @@ html.env-locked,body.env-locked{overflow:hidden;height:100%}
       </svg>
       <div class="footer-names">Hitver <span class="amp">&amp;</span> Oriana</div>
       <div class="footer-date">XII · IX · 2026 · Piura</div>
+      <p class="footer-despedida">Gracias por acompañarnos en uno de los días más felices de nuestras vidas.</p>
       <div class="footer-credit">
         <span class="credit-label">Invitación diseñada por</span>
         <a href="https://www.instagram.com/elysium.invitaciones/" target="_blank" rel="noopener" class="credit-handle">
@@ -1919,8 +1931,8 @@ function launchInvitation(){
     .fromTo(pChars,{opacity:0,y:80,rotateX:-60},{opacity:1,y:0,rotateX:0,duration:1.1,stagger:.035,ease:'power4.out'},'-=.5')
     .fromTo('.hero-and',{opacity:0,scale:.4,rotate:-20},{opacity:1,scale:1,rotate:0,duration:.9,ease:'back.out(1.6)'},'-=.6')
     .fromTo(lChars,{opacity:0,y:80,rotateX:-60},{opacity:1,y:0,rotateX:0,duration:1.1,stagger:.035,ease:'power4.out'},'-=.7')
-    .fromTo('.hero-date > *',{opacity:0,y:12},{opacity:1,y:0,duration:.7,stagger:.06,ease:'power2.out'},'-=.4')
-    ;
+    .fromTo('.hero-frase',{opacity:0,y:10},{opacity:1,y:0,duration:.7,ease:'power2.out'},'-=.45')
+    .fromTo('.hero-date > *',{opacity:0,y:12},{opacity:1,y:0,duration:.6,stagger:.05,ease:'power2.out'},'-=.35');
 
   startParticles();
   if(window.ScrollTrigger) ScrollTrigger.refresh();
@@ -2004,47 +2016,48 @@ gsap.to('.hero-content',{yPercent:-8,ease:'none',scrollTrigger:{trigger:'.hero',
 
 // ------ VERSO — word-by-word (sin blur) ------
 const verseWords = splitToWords(document.querySelector('.verse-text'));
-gsap.fromTo('.verse-ornament',{opacity:0,y:30,scale:.9},{opacity:1,y:0,scale:1,duration:1.2,ease:'power3.out',scrollTrigger:{trigger:'.verse-wrap',start:'top 80%'}});
-gsap.fromTo('.verse-quote',{opacity:0,scale:.5,rotate:-10},{opacity:.8,scale:1,rotate:0,duration:1.3,ease:'back.out(1.4)',scrollTrigger:{trigger:'.verse-wrap',start:'top 80%'}});
-gsap.fromTo(verseWords,{opacity:0,y:24},{opacity:1,y:0,duration:.9,stagger:.05,ease:'power3.out',scrollTrigger:{trigger:'.verse-text',start:'top 82%'}});
-gsap.fromTo('.verse-sig',{opacity:0,y:20,scaleX:.6},{opacity:1,y:0,scaleX:1,duration:1.2,ease:'power3.out',scrollTrigger:{trigger:'.verse-sig',start:'top 88%'}});
+gsap.fromTo('.verse-ornament',{opacity:0,y:30,scale:.9},{opacity:1,y:0,scale:1,duration:1.2,ease:'power3.out',scrollTrigger:{trigger:'.verse-wrap',start:'top 91%'}});
+gsap.fromTo('.verse-quote',{opacity:0,scale:.5,rotate:-10},{opacity:.8,scale:1,rotate:0,duration:1.05,ease:'back.out(1.4)',scrollTrigger:{trigger:'.verse-wrap',start:'top 91%'}});
+gsap.fromTo(verseWords,{opacity:0,y:24},{opacity:1,y:0,duration:.9,stagger:.05,ease:'power3.out',scrollTrigger:{trigger:'.verse-text',start:'top 92%'}});
+gsap.fromTo('.verse-sig',{opacity:0,y:20,scaleX:.6},{opacity:1,y:0,scaleX:1,duration:1.05,ease:'power3.out',scrollTrigger:{trigger:'.verse-sig',start:'top 94%'}});
+gsap.fromTo('.verse-foto',{opacity:0,y:24,scale:.97},{opacity:1,y:0,scale:1,duration:1.05,ease:'power3.out',scrollTrigger:{trigger:'.verse-foto',start:'top 94%'}});
 
 // ------ DATE HERO — count-up ------
 document.querySelectorAll('[data-count-to]').forEach(el=>{
   const to = parseInt(el.dataset.countTo,10);
   const obj = {v:0};
-  gsap.to(obj,{v:to,duration:2,ease:'power3.out',
+  gsap.to(obj,{v:to,duration:1.4,ease:'power3.out',
     onUpdate:()=>{el.textContent = Math.round(obj.v)},
-    scrollTrigger:{trigger:el,start:'top 80%'}});
+    scrollTrigger:{trigger:el,start:'top 91%'}});
 });
-gsap.fromTo('.date-h',{opacity:0,scale:.92,y:30},{opacity:1,scale:1,y:0,duration:1.4,ease:'power3.out',scrollTrigger:{trigger:'.date-h',start:'top 80%'}});
-gsap.fromTo('.date-block',{opacity:0,y:40},{opacity:1,y:0,duration:1.2,stagger:.15,ease:'power4.out',scrollTrigger:{trigger:'.date-numbers',start:'top 80%'}});
-gsap.fromTo('.date-roman',{opacity:0,letterSpacing:'1em'},{opacity:1,letterSpacing:'.4em',duration:1.2,ease:'power3.out',scrollTrigger:{trigger:'.date-roman',start:'top 85%'}});
-gsap.fromTo('.date-eyebrow',{opacity:0,y:10},{opacity:1,y:0,duration:.9,scrollTrigger:{trigger:'.date-eyebrow',start:'top 82%'}});
+gsap.fromTo('.date-h',{opacity:0,scale:.92,y:30},{opacity:1,scale:1,y:0,duration:1.05,ease:'power3.out',scrollTrigger:{trigger:'.date-h',start:'top 91%'}});
+gsap.fromTo('.date-block',{opacity:0,y:26},{opacity:1,y:0,duration:1.2,stagger:.15,ease:'power4.out',scrollTrigger:{trigger:'.date-numbers',start:'top 91%'}});
+gsap.fromTo('.date-roman',{opacity:0,letterSpacing:'1em'},{opacity:1,letterSpacing:'.4em',duration:1.2,ease:'power3.out',scrollTrigger:{trigger:'.date-roman',start:'top 93%'}});
+gsap.fromTo('.date-eyebrow',{opacity:0,y:10},{opacity:1,y:0,duration:.9,scrollTrigger:{trigger:'.date-eyebrow',start:'top 92%'}});
 
 // ------ STORY — line reveal (sin blur) ------
 document.querySelectorAll('[data-reveal="line"]').forEach(p=>{
-  gsap.fromTo(p,{opacity:0,y:20},{opacity:1,y:0,duration:1.1,ease:'power3.out',scrollTrigger:{trigger:p,start:'top 82%'}});
+  gsap.fromTo(p,{opacity:0,y:20},{opacity:1,y:0,duration:1.1,ease:'power3.out',scrollTrigger:{trigger:p,start:'top 92%'}});
 });
-gsap.fromTo('.story-ornament',{opacity:0,scaleX:0},{opacity:.6,scaleX:1,duration:1.2,ease:'power3.out',scrollTrigger:{trigger:'.story-ornament',start:'top 85%'}});
-gsap.fromTo('.story .hair-word',{opacity:0,y:12},{opacity:1,y:0,duration:1,scrollTrigger:{trigger:'.story .hair-word',start:'top 85%'}});
-gsap.fromTo('.story h2',{opacity:0,y:28},{opacity:1,y:0,duration:1.3,ease:'power3.out',scrollTrigger:{trigger:'.story h2',start:'top 80%'}});
-gsap.fromTo('.story-initials',{opacity:0,scale:.6,rotate:-8},{opacity:1,scale:1,rotate:0,duration:1.4,ease:'back.out(1.4)',scrollTrigger:{trigger:'.story-initials',start:'top 85%'}});
+gsap.fromTo('.story-ornament',{opacity:0,scaleX:0},{opacity:.6,scaleX:1,duration:1.2,ease:'power3.out',scrollTrigger:{trigger:'.story-ornament',start:'top 93%'}});
+gsap.fromTo('.story .hair-word',{opacity:0,y:12},{opacity:1,y:0,duration:1,scrollTrigger:{trigger:'.story .hair-word',start:'top 93%'}});
+gsap.fromTo('.story h2',{opacity:0,y:28},{opacity:1,y:0,duration:1.05,ease:'power3.out',scrollTrigger:{trigger:'.story h2',start:'top 91%'}});
+gsap.fromTo('.story-initials',{opacity:0,scale:.6,rotate:-8},{opacity:1,scale:1,rotate:0,duration:1.05,ease:'back.out(1.4)',scrollTrigger:{trigger:'.story-initials',start:'top 93%'}});
 
 // ------ LOCATIONS ------
 // ------ FAMILIA ------
-gsap.fromTo('.familia-ornament',{opacity:0,scaleX:0},{opacity:1,scaleX:1,duration:1.2,ease:'power3.out',scrollTrigger:{trigger:'.familia-ornament',start:'top 88%'}});
-gsap.fromTo('.familia .eyebrow, .familia h2, .familia-sub',{opacity:0,y:14},{opacity:1,y:0,duration:.9,stagger:.1,scrollTrigger:{trigger:'.familia',start:'top 78%'}});
-gsap.fromTo('.familia-group',{opacity:0,y:30},{opacity:1,y:0,duration:1.1,stagger:.2,ease:'power3.out',scrollTrigger:{trigger:'.familia-grid',start:'top 82%'}});
-gsap.fromTo('.familia-special',{opacity:0,y:20},{opacity:1,y:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:'.familia-special',start:'top 88%'}});
+gsap.fromTo('.familia-ornament',{opacity:0,scaleX:0},{opacity:1,scaleX:1,duration:1.2,ease:'power3.out',scrollTrigger:{trigger:'.familia-ornament',start:'top 94%'}});
+gsap.fromTo('.familia .eyebrow, .familia h2, .familia-sub',{opacity:0,y:14},{opacity:1,y:0,duration:.9,stagger:.1,scrollTrigger:{trigger:'.familia',start:'top 90%'}});
+gsap.fromTo('.familia-group',{opacity:0,y:30},{opacity:1,y:0,duration:1.1,stagger:.12,ease:'power3.out',scrollTrigger:{trigger:'.familia-grid',start:'top 92%'}});
+gsap.fromTo('.familia-special',{opacity:0,y:20},{opacity:1,y:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:'.familia-special',start:'top 94%'}});
 
 // ------ LOCS ------
-gsap.fromTo('.locs .eyebrow',{opacity:0,y:10},{opacity:1,y:0,duration:.9,scrollTrigger:{trigger:'.locs',start:'top 80%'}});
-gsap.fromTo('.locs h2',{opacity:0,y:24},{opacity:1,y:0,duration:1.1,ease:'power3.out',scrollTrigger:{trigger:'.locs h2',start:'top 82%'}});
-gsap.fromTo('.locs-sub',{opacity:0,letterSpacing:'1em'},{opacity:1,letterSpacing:'.3em',duration:1.1,ease:'power3.out',scrollTrigger:{trigger:'.locs-sub',start:'top 85%'}});
-gsap.fromTo('.loc-card',{opacity:0,y:60,rotateX:10,transformOrigin:'center top'},{opacity:1,y:0,rotateX:0,duration:1.3,stagger:.18,ease:'power4.out',scrollTrigger:{trigger:'.locs-grid',start:'top 82%'}});
-gsap.fromTo('.washi',{scaleX:0,transformOrigin:'center'},{scaleX:1,duration:.9,stagger:.18,ease:'back.out(1.4)',delay:.4,scrollTrigger:{trigger:'.locs-grid',start:'top 82%'}});
-gsap.fromTo('.rosette',{opacity:0,scale:0,rotate:-90},{opacity:.55,scale:1,rotate:0,duration:1,stagger:.08,ease:'back.out(1.4)',scrollTrigger:{trigger:'.locs-grid',start:'top 80%'}});
+gsap.fromTo('.locs .eyebrow',{opacity:0,y:10},{opacity:1,y:0,duration:.9,scrollTrigger:{trigger:'.locs',start:'top 91%'}});
+gsap.fromTo('.locs h2',{opacity:0,y:24},{opacity:1,y:0,duration:1.1,ease:'power3.out',scrollTrigger:{trigger:'.locs h2',start:'top 92%'}});
+gsap.fromTo('.locs-sub',{opacity:0,letterSpacing:'1em'},{opacity:1,letterSpacing:'.3em',duration:1.1,ease:'power3.out',scrollTrigger:{trigger:'.locs-sub',start:'top 93%'}});
+gsap.fromTo('.loc-card',{opacity:0,y:34,rotateX:10,transformOrigin:'center top'},{opacity:1,y:0,rotateX:0,duration:1.05,stagger:.11,ease:'power4.out',scrollTrigger:{trigger:'.locs-grid',start:'top 92%'}});
+gsap.fromTo('.washi',{scaleX:0,transformOrigin:'center'},{scaleX:1,duration:.9,stagger:.11,ease:'back.out(1.4)',delay:.4,scrollTrigger:{trigger:'.locs-grid',start:'top 92%'}});
+gsap.fromTo('.rosette',{opacity:0,scale:0,rotate:-90},{opacity:.55,scale:1,rotate:0,duration:1,stagger:.08,ease:'back.out(1.4)',scrollTrigger:{trigger:'.locs-grid',start:'top 91%'}});
 
 // 3D tilt — solo desktop
 if(!('ontouchstart' in window)){
@@ -2084,9 +2097,9 @@ function tick(){
   if(ss!==lastVals.s){flipOn(cdEls.s,ss);lastVals.s=ss}
 }
 tick();setInterval(tick,1000);
-gsap.fromTo('.countdown-panel',{opacity:0,y:40,scale:.97},{opacity:1,y:0,scale:1,duration:1.2,ease:'power4.out',scrollTrigger:{trigger:'.countdown-panel',start:'top 85%'}});
-gsap.fromTo('.cd-block',{opacity:0,y:24},{opacity:1,y:0,duration:1,stagger:.1,ease:'power3.out',scrollTrigger:{trigger:'.countdown-grid',start:'top 88%'}});
-gsap.fromTo('.countdown .eyebrow, .countdown h2, .countdown-sub',{opacity:0,y:14},{opacity:1,y:0,duration:.9,stagger:.1,scrollTrigger:{trigger:'.countdown',start:'top 78%'}});
+gsap.fromTo('.countdown-panel',{opacity:0,y:26,scale:.97},{opacity:1,y:0,scale:1,duration:1.2,ease:'power4.out',scrollTrigger:{trigger:'.countdown-panel',start:'top 93%'}});
+gsap.fromTo('.cd-block',{opacity:0,y:24},{opacity:1,y:0,duration:1,stagger:.1,ease:'power3.out',scrollTrigger:{trigger:'.countdown-grid',start:'top 94%'}});
+gsap.fromTo('.countdown .eyebrow, .countdown h2, .countdown-sub',{opacity:0,y:14},{opacity:1,y:0,duration:.9,stagger:.1,scrollTrigger:{trigger:'.countdown',start:'top 90%'}});
 
 // ------ ITINERARIO estilo cristal-humberto (itv3) ------
 (function initItv3(){
@@ -2117,7 +2130,7 @@ gsap.fromTo('.countdown .eyebrow, .countdown h2, .countdown-sub',{opacity:0,y:14
       gsap.fromTo(gem,
         {scale:0, opacity:0},
         {scale:1, opacity:1, duration:0.6, ease:'back.out(2.8)',
-         scrollTrigger:{trigger:item, start:'top 86%', once:true},
+         scrollTrigger:{trigger:item, start:'top 93%', once:true},
          onComplete:function(){
            gsap.timeline()
              .to(gem,{scale:1.4, filter:'drop-shadow(0 0 20px rgba('+gc+',1))',   duration:0.3, ease:'power2.out'})
@@ -2132,14 +2145,14 @@ gsap.fromTo('.countdown .eyebrow, .countdown h2, .countdown-sub',{opacity:0,y:14
     gsap.fromTo(els,
       {y:14, opacity:0},
       {y:0, opacity:1, duration:0.8, ease:'power2.out', stagger:0.08,
-       scrollTrigger:{trigger:item, start:'top 86%', once:true}});
+       scrollTrigger:{trigger:item, start:'top 93%', once:true}});
   });
 })();
 
 // ------ DRESS ------
-gsap.fromTo('.swatch',{opacity:0,scale:.4,y:30},{opacity:1,scale:1,y:0,duration:1.1,stagger:.1,ease:'elastic.out(1,.6)',scrollTrigger:{trigger:'.dress-swatches',start:'top 82%'}});
-gsap.fromTo('.dress .eyebrow, .dress h2, .dc-note, .dc-warn, .dress-note',{opacity:0,y:14},{opacity:1,y:0,duration:.9,stagger:.08,scrollTrigger:{trigger:'.dress',start:'top 78%'}});
-gsap.fromTo('.dc-fig',{opacity:0,y:18},{opacity:1,y:0,duration:.7,stagger:.12,ease:'power2.out',scrollTrigger:{trigger:'.dc-figures',start:'top 82%'}});
+gsap.fromTo('.swatch',{opacity:0,scale:.4,y:30},{opacity:1,scale:1,y:0,duration:1.1,stagger:.1,ease:'elastic.out(1,.6)',scrollTrigger:{trigger:'.dress-swatches',start:'top 92%'}});
+gsap.fromTo('.dress .eyebrow, .dress h2, .dc-note, .dc-warn, .dress-note',{opacity:0,y:14},{opacity:1,y:0,duration:.9,stagger:.08,scrollTrigger:{trigger:'.dress',start:'top 90%'}});
+gsap.fromTo('.dc-fig',{opacity:0,y:18},{opacity:1,y:0,duration:.7,stagger:.12,ease:'power2.out',scrollTrigger:{trigger:'.dc-figures',start:'top 92%'}});
 
 // ------ GALERÍA — Rueda 3D arrastrable con inercia (estilo nelvi-yessica) ------
 (function initWheel(){
@@ -2190,7 +2203,7 @@ gsap.fromTo('.dc-fig',{opacity:0,y:18},{opacity:1,y:0,duration:.7,stagger:.12,ea
 
   ScrollTrigger.create({
     trigger:'.wheel-stage',
-    start:'top 80%',
+    start:'top 91%',
     onEnter: startAutoSpin,
     onLeaveBack: stopAutoSpin
   });
@@ -2236,10 +2249,10 @@ gsap.fromTo('.dc-fig',{opacity:0,y:18},{opacity:1,y:0,duration:.7,stagger:.12,ea
   });
 
   // entrada animada
-  gsap.fromTo(cards,{opacity:0,scale:.4},{opacity:1,scale:1,duration:1.0,stagger:.07,ease:'back.out(1.4)',scrollTrigger:{trigger:'.wheel-stage',start:'top 80%'}});
+  gsap.fromTo(cards,{opacity:0,scale:.4},{opacity:1,scale:1,duration:1.0,stagger:.07,ease:'back.out(1.4)',scrollTrigger:{trigger:'.wheel-stage',start:'top 91%'}});
 })();
-gsap.fromTo('.gallery-head > *',{opacity:0,y:18},{opacity:1,y:0,duration:1,stagger:.1,scrollTrigger:{trigger:'.gallery-head',start:'top 80%'}});
-gsap.fromTo('.wheel-hint',{opacity:0,y:8},{opacity:.72,y:0,duration:.9,scrollTrigger:{trigger:'.wheel-hint',start:'top 92%'}});
+gsap.fromTo('.gallery-head > *',{opacity:0,y:18},{opacity:1,y:0,duration:1,stagger:.1,scrollTrigger:{trigger:'.gallery-head',start:'top 91%'}});
+gsap.fromTo('.wheel-hint',{opacity:0,y:8},{opacity:.72,y:0,duration:.9,scrollTrigger:{trigger:'.wheel-hint',start:'top 96%'}});
 
 // ------ LIGHTBOX — rueda de fotos ------
 (function(){
@@ -2287,19 +2300,19 @@ gsap.fromTo('.wheel-hint',{opacity:0,y:8},{opacity:.72,y:0,duration:.9,scrollTri
 // ------ KIDS draw-on ------
 const kidsPaths = document.querySelectorAll('.kids-icon svg path, .kids-icon svg circle');
 gsap.set(kidsPaths,{strokeDashoffset:(i,el)=>getComputedStyle(el).getPropertyValue('--len')||200});
-gsap.to(kidsPaths,{strokeDashoffset:0,duration:2,stagger:.25,ease:'power2.inOut',scrollTrigger:{trigger:'.kids-icon',start:'top 82%'}});
-gsap.fromTo('.kids-policy .eyebrow, .kids-policy h2, .kids-text',{opacity:0,y:18},{opacity:1,y:0,duration:1,stagger:.12,scrollTrigger:{trigger:'.kids-policy',start:'top 78%'}});
+gsap.to(kidsPaths,{strokeDashoffset:0,duration:1.4,stagger:.25,ease:'power2.inOut',scrollTrigger:{trigger:'.kids-icon',start:'top 92%'}});
+gsap.fromTo('.kids-policy .eyebrow, .kids-policy h2, .kids-text',{opacity:0,y:18},{opacity:1,y:0,duration:1,stagger:.12,scrollTrigger:{trigger:'.kids-policy',start:'top 90%'}});
 
 // ------ GIFTS ------
-gsap.fromTo('.gifts-head > *',{opacity:0,y:18},{opacity:1,y:0,duration:1,stagger:.1,scrollTrigger:{trigger:'.gifts-head',start:'top 80%'}});
-gsap.fromTo('.gifts-panel',{opacity:0,y:40,scale:.97},{opacity:1,y:0,scale:1,duration:1.2,ease:'power4.out',scrollTrigger:{trigger:'.gifts-panel',start:'top 84%'}});
-gsap.fromTo('.gift-row, .gifts-sep, .gift-addr',{opacity:0,y:16},{opacity:1,y:0,duration:.9,stagger:.09,ease:'power3.out',scrollTrigger:{trigger:'.gifts-panel',start:'top 80%'}});
+gsap.fromTo('.gifts-head > *',{opacity:0,y:18},{opacity:1,y:0,duration:1,stagger:.1,scrollTrigger:{trigger:'.gifts-head',start:'top 91%'}});
+gsap.fromTo('.gifts-panel',{opacity:0,y:26,scale:.97},{opacity:1,y:0,scale:1,duration:1.2,ease:'power4.out',scrollTrigger:{trigger:'.gifts-panel',start:'top 92%'}});
+gsap.fromTo('.gift-row, .gifts-sep, .gift-addr',{opacity:0,y:16},{opacity:1,y:0,duration:.9,stagger:.09,ease:'power3.out',scrollTrigger:{trigger:'.gifts-panel',start:'top 91%'}});
 // ------ QR scan line ------
 const qrWrap = document.getElementById('qr-wrap');
-ScrollTrigger.create({trigger:qrWrap,start:'top 80%',once:true,onEnter:()=>qrWrap.classList.add('scanning')});
-gsap.fromTo('.album .eyebrow, .album h2, .album-text',{opacity:0,y:18},{opacity:1,y:0,duration:1,stagger:.1,scrollTrigger:{trigger:'.album',start:'top 78%'}});
-gsap.fromTo('#qr-wrap',{opacity:0,y:30,scale:.94},{opacity:1,y:0,scale:1,duration:1.2,ease:'power3.out',scrollTrigger:{trigger:'#qr-wrap',start:'top 82%'}});
-gsap.fromTo('.album-link',{opacity:0,y:10},{opacity:1,y:0,duration:.9,scrollTrigger:{trigger:'.album-link',start:'top 90%'}});
+ScrollTrigger.create({trigger:qrWrap,start:'top 91%',once:true,onEnter:()=>qrWrap.classList.add('scanning')});
+gsap.fromTo('.album .eyebrow, .album h2, .album-text',{opacity:0,y:18},{opacity:1,y:0,duration:1,stagger:.1,scrollTrigger:{trigger:'.album',start:'top 90%'}});
+gsap.fromTo('#qr-wrap',{opacity:0,y:30,scale:.94},{opacity:1,y:0,scale:1,duration:1.2,ease:'power3.out',scrollTrigger:{trigger:'#qr-wrap',start:'top 92%'}});
+gsap.fromTo('.album-link',{opacity:0,y:10},{opacity:1,y:0,duration:.9,scrollTrigger:{trigger:'.album-link',start:'top 95%'}});
 
 // ------ RSVP ------
 const rsvpBtn=document.querySelector('.rsvp-btn');
@@ -2310,20 +2323,21 @@ if(rsvpBtn&&!('ontouchstart' in window)){
   });
   rsvpBtn.addEventListener('mouseleave',()=>gsap.to(rsvpBtn,{x:0,y:0,duration:.6,ease:'elastic.out(1,.5)'}));
 }
-gsap.fromTo('.rsvp-card',{opacity:0,y:40,scale:.97},{opacity:1,y:0,scale:1,duration:1.2,ease:'power4.out',scrollTrigger:{trigger:'.rsvp-card',start:'top 82%'}});
-gsap.fromTo('.rsvp-ornament',{opacity:0,scaleX:0},{opacity:1,scaleX:1,duration:1.2,ease:'power3.out',scrollTrigger:{trigger:'.rsvp-ornament',start:'top 85%'}});
-gsap.fromTo('.rsvp .eyebrow,.rsvp-title,.rsvp-text,.rsvp-divider',{opacity:0,y:16},{opacity:1,y:0,duration:1.1,stagger:.1,scrollTrigger:{trigger:'.rsvp-card',start:'top 80%'}});
-gsap.fromTo('.rsvp-btn',{opacity:0,y:24,scale:.92},{opacity:1,y:0,scale:1,duration:1.2,ease:'back.out(1.4)',scrollTrigger:{trigger:'.rsvp-btn',start:'top 88%'}});
-gsap.fromTo('.rsvp-deadline',{opacity:0,letterSpacing:'1em'},{opacity:1,letterSpacing:'.4em',duration:1,scrollTrigger:{trigger:'.rsvp-deadline',start:'top 92%'}});
-gsap.fromTo('.rsvp-corner',{opacity:0,scale:.5},{opacity:1,scale:1,duration:1,stagger:.08,ease:'back.out(2)',scrollTrigger:{trigger:'.rsvp-card',start:'top 82%'}});
+gsap.fromTo('.rsvp-card',{opacity:0,y:26,scale:.97},{opacity:1,y:0,scale:1,duration:1.2,ease:'power4.out',scrollTrigger:{trigger:'.rsvp-card',start:'top 92%'}});
+gsap.fromTo('.rsvp-ornament',{opacity:0,scaleX:0},{opacity:1,scaleX:1,duration:1.2,ease:'power3.out',scrollTrigger:{trigger:'.rsvp-ornament',start:'top 93%'}});
+gsap.fromTo('.rsvp .eyebrow,.rsvp-title,.rsvp-text,.rsvp-divider',{opacity:0,y:16},{opacity:1,y:0,duration:1.1,stagger:.1,scrollTrigger:{trigger:'.rsvp-card',start:'top 91%'}});
+gsap.fromTo('.rsvp-btn',{opacity:0,y:24,scale:.92},{opacity:1,y:0,scale:1,duration:1.2,ease:'back.out(1.4)',scrollTrigger:{trigger:'.rsvp-btn',start:'top 94%'}});
+gsap.fromTo('.rsvp-deadline',{opacity:0,letterSpacing:'1em'},{opacity:1,letterSpacing:'.4em',duration:1,scrollTrigger:{trigger:'.rsvp-deadline',start:'top 96%'}});
+gsap.fromTo('.rsvp-corner',{opacity:0,scale:.5},{opacity:1,scale:1,duration:1,stagger:.08,ease:'back.out(2)',scrollTrigger:{trigger:'.rsvp-card',start:'top 92%'}});
 
 // ------ FOOTER ------
-gsap.fromTo('.footer-ornament',{opacity:0,scaleX:0},{opacity:.55,scaleX:1,duration:1.2,ease:'power3.out',scrollTrigger:{trigger:'footer',start:'top 90%'}});
-gsap.fromTo('.footer-names',{opacity:0,y:20},{opacity:1,y:0,duration:1.3,ease:'power3.out',scrollTrigger:{trigger:'.footer-names',start:'top 90%'}});
-gsap.fromTo('.footer-date',{opacity:0,letterSpacing:'1em'},{opacity:1,letterSpacing:'.5em',duration:1.2,scrollTrigger:{trigger:'.footer-date',start:'top 92%'}});
+gsap.fromTo('.footer-ornament',{opacity:0,scaleX:0},{opacity:.55,scaleX:1,duration:1.2,ease:'power3.out',scrollTrigger:{trigger:'footer',start:'top 95%'}});
+gsap.fromTo('.footer-names',{opacity:0,y:20},{opacity:1,y:0,duration:1.05,ease:'power3.out',scrollTrigger:{trigger:'.footer-names',start:'top 95%'}});
+gsap.fromTo('.footer-date',{opacity:0,letterSpacing:'1em'},{opacity:1,letterSpacing:'.5em',duration:1.05,scrollTrigger:{trigger:'.footer-date',start:'top 96%'}});
+gsap.fromTo('.footer-despedida',{opacity:0,y:14},{opacity:1,y:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:'.footer-despedida',start:'top 97%'}});
 
 // ------ hair-word reveal ------
-gsap.fromTo('.hair-word',{opacity:0,scaleX:.5},{opacity:1,scaleX:1,duration:1.2,ease:'power3.out',scrollTrigger:{trigger:'.hair-word',start:'top 85%'}});
+gsap.fromTo('.hair-word',{opacity:0,scaleX:.5},{opacity:1,scaleX:1,duration:1.2,ease:'power3.out',scrollTrigger:{trigger:'.hair-word',start:'top 93%'}});
 
 // ------ COPY CLABE ------
 document.querySelectorAll('.copy-text').forEach(btn=>{
@@ -2384,16 +2398,16 @@ function launchPetal(initial){
     onComplete:()=>{ el.remove(); setTimeout(()=>launchPetal(false), Math.random()*2600); }
   });
   tl.set(el,{y:startY,rotateZ:Math.random()*360})
-    .to(el,{opacity:.92,duration:1.4,ease:'sine.out'},0)
+    .to(el,{opacity:.92,duration:1.05,ease:'sine.out'},0)
     .to(el,{y:startY+fall,duration:dur,ease:'none'},0)
     .to(el,{x:drift,duration:dur/2,ease:'sine.inOut',yoyo:true,repeat:1},0)
     .to(el,{rotateZ:'+='+((Math.random()-.5)*640),rotateY:360*(1+Math.random()*2),duration:dur,ease:'none'},0)
-    .to(el,{opacity:0,duration:1.8,ease:'sine.in'},dur-1.8);
+    .to(el,{opacity:0,duration:1.05,ease:'sine.in'},dur-1.8);
 }
 
 function startParticles(){
   if(prefersReduced) return;
-  for(let i=0;i<20;i++) setTimeout(()=>launchPetal(true), i*260);
+  for(let i=0;i<14;i++) setTimeout(()=>launchPetal(true), i*300);
 }
 
 // ------ LLUVIA DE NOTAS MUSICALES — parte superior, mientras suena la música ------
@@ -2406,30 +2420,33 @@ const NOTE_SVGS = [
 
 function launchNote(){
   if(!notesLayer) return;
+  if(notesLayer.childElementCount >= 5) return;
   const el = document.createElement('div');
   el.className = 'note';
-  const size = 15 + Math.random()*13;
+  const size = 14 + Math.random()*9;
   el.style.width = size+'px';
   el.style.height = size+'px';
-  el.style.left = (Math.random()*vw())+'px';
+  // nacen sobre el disco y suben: la caja mide 164px, no el ancho de la ventana
+  const caja = notesLayer.offsetWidth || 164;
+  el.style.left = (caja * .48 + (Math.random() - .5) * caja * .34) + 'px';
   el.innerHTML = NOTE_SVGS[(Math.random()*NOTE_SVGS.length)|0];
   notesLayer.appendChild(el);
 
-  const dist = notesLayer.offsetHeight + 60;
-  const dur  = 4.2 + Math.random()*2.6;
+  const subida = (notesLayer.offsetHeight || 240) * .78;
+  const dur    = 2.8 + Math.random()*1.2;
   gsap.timeline({onComplete:()=>el.remove()})
-    .to(el,{opacity:.78,duration:.8,ease:'sine.out'},0)
-    .to(el,{y:dist,duration:dur,ease:'none'},0)
-    .to(el,{x:(Math.random()-.5)*120,duration:dur/2,ease:'sine.inOut',yoyo:true,repeat:1},0)
-    .to(el,{rotateZ:(Math.random()-.5)*70,duration:dur,ease:'sine.inOut'},0)
-    .to(el,{opacity:0,duration:1.4,ease:'sine.in'},dur-1.4);
+    .fromTo(el,{opacity:0,scale:.55},{opacity:.82,scale:1,duration:.55,ease:'back.out(2)'},0)
+    .to(el,{y:-subida,duration:dur,ease:'sine.out'},0)
+    .to(el,{x:(Math.random()-.5)*46,duration:dur/2,ease:'sine.inOut',yoyo:true,repeat:1},0)
+    .to(el,{rotateZ:(Math.random()-.5)*44,duration:dur,ease:'sine.inOut'},0)
+    .to(el,{opacity:0,scale:.7,duration:1,ease:'sine.in'},dur-1);
 }
 
 let notesTimer = null;
 function startNotes(){
   if(prefersReduced || notesTimer) return;
   launchNote();
-  notesTimer = setInterval(launchNote, 620);
+  notesTimer = setInterval(launchNote, 1150);
 }
 function stopNotes(){
   if(notesTimer){ clearInterval(notesTimer); notesTimer = null; }
@@ -2777,7 +2794,7 @@ window.addEventListener('resize',()=>ScrollTrigger.refresh());
 document.querySelectorAll('.foto-band').forEach(band=>{
   ScrollTrigger.create({
     trigger:band,
-    start:'top 85%',
+    start:'top 93%',
     once:true,
     onEnter:()=>band.classList.add('is-visible')
   });
