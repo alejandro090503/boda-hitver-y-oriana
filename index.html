@@ -800,6 +800,11 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:500;color:var(--accent);padding:
   white-space:nowrap;
 }
 /* direcciones en dos columnas para que ocupen menos */
+.gift-addrs-nota{
+  text-align:center;font-family:var(--serif);font-style:italic;font-weight:500;
+  font-size:clamp(16px,1.7vw,18px);line-height:1.6;color:var(--ink-soft);
+  max-width:34ch;margin:0 auto 26px;
+}
 .gift-addrs{
   display:grid;grid-template-columns:1fr 1fr;
   gap:clamp(16px,4vw,34px);align-items:start;
@@ -1824,6 +1829,7 @@ html.env-locked,body.env-locked{overflow:hidden;height:100%}
         <p class="gifts-sub">Si además quieres tener un detalle con nosotros, abre el regalo</p>
       </div>
       <div class="gifts-panel">
+        <p class="gift-addrs-nota">Puedes dejar tu regalo en cualquiera de estas dos direcciones</p>
         <div class="gift-addrs">
           <div class="gift-addr">
             <div class="gift-addr-zone">Piura</div>
