@@ -685,7 +685,7 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:500;color:var(--accent);padding:
 .gifts-panel > *{position:relative}
 
 /* ---- regalo que se abre con los datos de transferencia ---- */
-.gift-box-wrap{display:flex;flex-direction:column;align-items:center}
+.gift-box-wrap{display:flex;flex-direction:column;align-items:center;margin:34px auto 0}
 .gift-box{
   background:none;border:none;padding:0;cursor:pointer;
   -webkit-tap-highlight-color:transparent;
@@ -704,16 +704,44 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:500;color:var(--accent);padding:
 .gift-confetti{position:absolute;inset:-140px;pointer-events:none;overflow:visible;z-index:2}
 .gift-confetti i{position:absolute;left:50%;top:50%;display:block;border-radius:1px}
 
-.gift-reveal{
-  width:100%;overflow:hidden;max-height:0;opacity:0;
-  transition:max-height .6s cubic-bezier(.2,.7,.2,1),opacity .45s ease,margin-top .6s;
-  margin-top:0;
+/* los datos se abren a pantalla completa, igual que las fotos del carrusel */
+#gift-modal{
+  position:fixed;inset:0;z-index:9991;
+  display:none;align-items:center;justify-content:center;
+  padding:clamp(16px,5vw,48px);
+  background:rgba(20,26,14,.82);
+  backdrop-filter:blur(18px) saturate(1.15);
+  -webkit-backdrop-filter:blur(18px) saturate(1.15);
+  opacity:0;
 }
-.gift-box-wrap.is-open .gift-reveal{max-height:760px;opacity:1;margin-top:30px}
-.gift-box-wrap.is-open .gift-box-hint{opacity:.55}
-@media (prefers-reduced-motion:reduce){
-  .gift-reveal{transition:none}
+#gift-modal.is-open{display:flex}
+.gift-modal-card{
+  position:relative;width:min(560px,100%);max-height:86vh;overflow:auto;
+  background:var(--paper);border:1px solid var(--hair-gold);
+  padding:clamp(30px,5vw,52px) clamp(22px,4vw,46px);
+  box-shadow:0 30px 90px rgba(20,26,14,.5);
+  opacity:0;transform:scale(.94);
 }
+.gift-modal-card::before{
+  content:"";position:absolute;inset:9px;
+  border:1px solid var(--hair-gold);opacity:.55;pointer-events:none;
+}
+.gift-modal-title{
+  font-family:var(--italiana);font-size:12px;letter-spacing:.44em;
+  text-transform:uppercase;color:var(--gold-deep);padding-left:.44em;
+  text-align:center;margin-bottom:28px;
+}
+#gift-modal-close{
+  position:absolute;top:clamp(14px,3vw,28px);right:clamp(14px,3vw,28px);
+  width:46px;height:46px;border:1px solid rgba(211,177,131,.5);
+  background:rgba(22,31,15,.6);backdrop-filter:blur(8px);
+  border-radius:50%;color:#FFFFF0;font-size:24px;line-height:1;
+  font-family:var(--sans);cursor:pointer;z-index:2;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .3s,border-color .3s,transform .3s;
+}
+#gift-modal-close:hover{background:rgba(46,61,36,.85);border-color:var(--gold-soft);transform:scale(1.08)}
+#gift-modal .gift-confetti{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:3}
 .gift-row + .gift-row{
   margin-top:26px;padding-top:26px;
   border-top:1px solid color-mix(in srgb, var(--gold) 20%, transparent);
@@ -773,8 +801,12 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:500;color:var(--accent);padding:
 }
 /* direcciones en dos columnas para que ocupen menos */
 .gift-addrs{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
-  gap:26px 30px;align-items:start;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(16px,4vw,34px);align-items:start;
+}
+@media (max-width:420px){
+  .gift-addr-zone{font-size:17px}
+  .gift-addr-text{font-size:14px;line-height:1.55}
 }
 .gift-addr{text-align:center}
 .gift-addr-zone{
@@ -1789,70 +1821,6 @@ html.env-locked,body.env-locked{overflow:hidden;height:100%}
         <p class="gifts-sub">Si además quieres tener un detalle con nosotros, abre el regalo</p>
       </div>
       <div class="gifts-panel">
-        <div class="gift-box-wrap" id="giftBox">
-          <button class="gift-box" type="button" aria-expanded="false" aria-controls="giftReveal" aria-label="Abrir el regalo y ver los datos para transferencia">
-            <span class="gift-box-art">
-              <span class="gift-confetti" aria-hidden="true"></span>
-              <svg viewBox="0 0 120 120" aria-hidden="true">
-                <defs>
-                  <linearGradient id="gb-body" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="#3f5233"/><stop offset="100%" stop-color="#22301a"/>
-                  </linearGradient>
-                  <linearGradient id="gb-lid" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="#4a6039"/><stop offset="100%" stop-color="#2a3a20"/>
-                  </linearGradient>
-                  <linearGradient id="gb-gold" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#f2ddb4"/><stop offset="55%" stop-color="#d3b183"/><stop offset="100%" stop-color="#9d6c3c"/>
-                  </linearGradient>
-                </defs>
-                <ellipse cx="60" cy="112" rx="38" ry="5" fill="rgba(46,61,36,.22)"/>
-                <rect x="22" y="46" width="76" height="62" rx="4" fill="url(#gb-body)"/>
-                <rect x="53" y="46" width="14" height="62" fill="url(#gb-gold)" opacity=".92"/>
-                <g class="gift-box-lid">
-                  <rect x="16" y="32" width="88" height="18" rx="4" fill="url(#gb-lid)"/>
-                  <rect x="53" y="32" width="14" height="18" fill="url(#gb-gold)" opacity=".92"/>
-                  <path d="M60 32C60 22 50 14 42 18c-7 4-4 14 18 14z" fill="none" stroke="url(#gb-gold)" stroke-width="4.5" stroke-linejoin="round"/>
-                  <path d="M60 32c0-10 10-18 18-14 7 4 4 14-18 14z" fill="none" stroke="url(#gb-gold)" stroke-width="4.5" stroke-linejoin="round"/>
-                </g>
-              </svg>
-            </span>
-            <span class="gift-box-hint">Toca el regalo</span>
-          </button>
-
-          <div class="gift-reveal" id="giftReveal">
-          <div class="gift-row">
-            <div class="gift-row-name">Hitver</div>
-            <div class="gift-row-bank">Interbank · Cuenta Simple Soles</div>
-            <div class="gift-line">
-              <span class="gift-line-label">Cuenta</span>
-              <span class="gift-line-num">737 3144332565</span>
-              <button class="gift-copy copy-text" data-copy="7373144332565" aria-label="Copiar cuenta de Hitver">Copiar</button>
-            </div>
-            <div class="gift-line">
-              <span class="gift-line-label">CCI</span>
-              <span class="gift-line-num">0037 3701 3144 3325 6542</span>
-              <button class="gift-copy copy-text" data-copy="00373701314433256542" aria-label="Copiar CCI de Hitver">Copiar</button>
-            </div>
-          </div>
-          <div class="gift-row">
-            <div class="gift-row-name">Oriana</div>
-            <div class="gift-row-bank">Interbank · Cuenta Simple Soles</div>
-            <div class="gift-line">
-              <span class="gift-line-label">Cuenta</span>
-              <span class="gift-line-num">898 3142908451</span>
-              <button class="gift-copy copy-text" data-copy="8983142908451" aria-label="Copiar cuenta de Oriana">Copiar</button>
-            </div>
-            <div class="gift-line">
-              <span class="gift-line-label">CCI</span>
-              <span class="gift-line-num">0038 9801 3142 9084 5143</span>
-              <button class="gift-copy copy-text" data-copy="00389801314290845143" aria-label="Copiar CCI de Oriana">Copiar</button>
-            </div>
-          </div>
-          </div>
-        </div>
-
-        <div class="gifts-sep"><span>o en casa</span></div>
-
         <div class="gift-addrs">
           <div class="gift-addr">
             <div class="gift-addr-zone">Piura</div>
@@ -1863,6 +1831,36 @@ html.env-locked,body.env-locked{overflow:hidden;height:100%}
             <div class="gift-addr-text">UPIS Vive Hogar Castilla<br>Mz H4-41, Etapa 3</div>
           </div>
         </div>
+      </div>
+
+      <div class="gift-box-wrap" id="giftBox">
+        <button class="gift-box" type="button" aria-haspopup="dialog" aria-label="Abrir el regalo y ver los datos para transferencia">
+          <span class="gift-box-art">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <defs>
+                <linearGradient id="gb-body" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#3f5233"/><stop offset="100%" stop-color="#22301a"/>
+                </linearGradient>
+                <linearGradient id="gb-lid" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#4a6039"/><stop offset="100%" stop-color="#2a3a20"/>
+                </linearGradient>
+                <linearGradient id="gb-gold" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#f2ddb4"/><stop offset="55%" stop-color="#d3b183"/><stop offset="100%" stop-color="#9d6c3c"/>
+                </linearGradient>
+              </defs>
+              <ellipse cx="60" cy="112" rx="38" ry="5" fill="rgba(46,61,36,.22)"/>
+              <rect x="22" y="46" width="76" height="62" rx="4" fill="url(#gb-body)"/>
+              <rect x="53" y="46" width="14" height="62" fill="url(#gb-gold)" opacity=".92"/>
+              <g class="gift-box-lid">
+                <rect x="16" y="32" width="88" height="18" rx="4" fill="url(#gb-lid)"/>
+                <rect x="53" y="32" width="14" height="18" fill="url(#gb-gold)" opacity=".92"/>
+                <path d="M60 32C60 22 50 14 42 18c-7 4-4 14 18 14z" fill="none" stroke="url(#gb-gold)" stroke-width="4.5" stroke-linejoin="round"/>
+                <path d="M60 32c0-10 10-18 18-14 7 4 4 14-18 14z" fill="none" stroke="url(#gb-gold)" stroke-width="4.5" stroke-linejoin="round"/>
+              </g>
+            </svg>
+          </span>
+          <span class="gift-box-hint">Toca el regalo</span>
+        </button>
       </div>
 
     </div>
@@ -1982,6 +1980,43 @@ html.env-locked,body.env-locked{overflow:hidden;height:100%}
     </div>
   </footer>
 
+</div>
+
+<!-- DATOS PARA TRANSFERENCIA -->
+<div id="gift-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Datos para transferencia">
+  <span class="gift-confetti" aria-hidden="true"></span>
+  <button id="gift-modal-close" aria-label="Cerrar">&times;</button>
+  <div class="gift-modal-card">
+    <div class="gift-modal-title">Para transferencia</div>
+      <div class="gift-row">
+        <div class="gift-row-name">Hitver</div>
+        <div class="gift-row-bank">Interbank · Cuenta Simple Soles</div>
+        <div class="gift-line">
+          <span class="gift-line-label">Cuenta</span>
+          <span class="gift-line-num">737 3144332565</span>
+          <button class="gift-copy copy-text" data-copy="7373144332565" aria-label="Copiar cuenta de Hitver">Copiar</button>
+        </div>
+        <div class="gift-line">
+          <span class="gift-line-label">CCI</span>
+          <span class="gift-line-num">0037 3701 3144 3325 6542</span>
+          <button class="gift-copy copy-text" data-copy="00373701314433256542" aria-label="Copiar CCI de Hitver">Copiar</button>
+        </div>
+      </div>
+      <div class="gift-row">
+        <div class="gift-row-name">Oriana</div>
+        <div class="gift-row-bank">Interbank · Cuenta Simple Soles</div>
+        <div class="gift-line">
+          <span class="gift-line-label">Cuenta</span>
+          <span class="gift-line-num">898 3142908451</span>
+          <button class="gift-copy copy-text" data-copy="8983142908451" aria-label="Copiar cuenta de Oriana">Copiar</button>
+        </div>
+        <div class="gift-line">
+          <span class="gift-line-label">CCI</span>
+          <span class="gift-line-num">0038 9801 3142 9084 5143</span>
+          <button class="gift-copy copy-text" data-copy="00389801314290845143" aria-label="Copiar CCI de Oriana">Copiar</button>
+        </div>
+      </div>
+  </div>
 </div>
 
 <!-- LIGHTBOX -->
@@ -2429,58 +2464,70 @@ gsap.fromTo('.gifts-head > *',{opacity:0,y:18},{opacity:1,y:0,duration:1,stagger
 gsap.fromTo('.gifts-panel',{opacity:0,y:26,scale:.97},{opacity:1,y:0,scale:1,duration:1.2,ease:'power4.out',scrollTrigger:{trigger:'.gifts-panel',start:'top 92%'}});
 gsap.fromTo('.gift-box, .gifts-sep, .gift-addr',{opacity:0,y:16},{opacity:1,y:0,duration:.9,stagger:.09,ease:'power3.out',scrollTrigger:{trigger:'.gifts-panel',start:'top 91%'}});
 
-// ------ REGALO: se abre, suelta confeti y muestra los datos ------
+// ------ REGALO: abre los datos a pantalla completa, como las fotos ------
 (function(){
-  const wrap = document.getElementById('giftBox');
-  if(!wrap) return;
+  const wrap  = document.getElementById('giftBox');
+  const modal = document.getElementById('gift-modal');
+  if(!wrap || !modal) return;
   const btn   = wrap.querySelector('.gift-box');
   const lid   = wrap.querySelector('.gift-box-lid');
-  const capa  = wrap.querySelector('.gift-confetti');
-  const hint  = wrap.querySelector('.gift-box-hint');
+  const card  = modal.querySelector('.gift-modal-card');
+  const capa  = modal.querySelector('.gift-confetti');
+  const cerrar= document.getElementById('gift-modal-close');
   const TONOS = ['#d3b183','#9d6c3c','#6b842d','#5f8575','#f2ddb4','#f3bfcd','#fde3ea'];
   let abierto = false;
 
   function confeti(){
     if(prefersReduced) return;
-    for(let i=0;i<46;i++){
+    const w = modal.offsetWidth, h = modal.offsetHeight;
+    for(let i=0;i<58;i++){
       const p = document.createElement('i');
-      const ancho = 5 + Math.random()*5;
-      p.style.width = ancho+'px';
-      p.style.height = (ancho*(0.4+Math.random()*0.9))+'px';
-      p.style.background = TONOS[(Math.random()*TONOS.length)|0];
+      const a = 5 + Math.random()*6;
+      p.style.cssText = 'position:absolute;border-radius:1px;width:'+a+'px;height:'+(a*(0.4+Math.random()*0.9))+'px;background:'+TONOS[(Math.random()*TONOS.length)|0]+';left:'+(w/2)+'px;top:'+(h*0.52)+'px';
       capa.appendChild(p);
-
-      const ang = (-90 + (Math.random()-.5)*128) * Math.PI/180;
-      const fza = 90 + Math.random()*140;
+      const ang = (-90 + (Math.random()-.5)*150) * Math.PI/180;
+      const fza = 120 + Math.random()*220;
       gsap.timeline({onComplete:()=>p.remove()})
         .fromTo(p,{x:0,y:0,opacity:1,scale:.6,rotate:Math.random()*360},
-                  {x:Math.cos(ang)*fza, y:Math.sin(ang)*fza, scale:1, duration:.62, ease:'power2.out'},0)
-        .to(p,{y:'+='+(150+Math.random()*130), rotate:'+='+((Math.random()-.5)*640),
-               duration:1.5+Math.random()*.7, ease:'power1.in'},.6)
-        .to(p,{opacity:0,duration:.5,ease:'power1.in'},1.6);
+                  {x:Math.cos(ang)*fza, y:Math.sin(ang)*fza, scale:1, duration:.7, ease:'power2.out'},0)
+        .to(p,{y:'+='+(h*0.7), rotate:'+='+((Math.random()-.5)*700),
+               duration:1.7+Math.random()*.8, ease:'power1.in'},.65)
+        .to(p,{opacity:0,duration:.6,ease:'power1.in'},1.8);
     }
   }
 
   function abrir(){
+    if(abierto) return;
     abierto = true;
-    wrap.classList.add('is-open');
-    btn.setAttribute('aria-expanded','true');
-    hint.textContent = 'Toca para cerrar';
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
     gsap.to(lid,{y:-30,rotate:-16,duration:.5,ease:'back.out(1.7)'});
-    confeti();
-    if(window.ScrollTrigger) setTimeout(()=>ScrollTrigger.refresh(), 700);
+    gsap.to(modal,{opacity:1,duration:.35,ease:'power2.out'});
+    gsap.to(card,{opacity:1,scale:1,duration:.55,ease:'power3.out',delay:.05});
+    setTimeout(confeti, 240);
+    cerrar.focus();
   }
-  function cerrar(){
+  function cerrarModal(){
+    if(!abierto) return;
     abierto = false;
-    wrap.classList.remove('is-open');
-    btn.setAttribute('aria-expanded','false');
-    hint.textContent = 'Toca el regalo';
+    gsap.to(card,{opacity:0,scale:.94,duration:.3,ease:'power2.in'});
+    gsap.to(modal,{opacity:0,duration:.32,ease:'power2.in',delay:.05,
+      onComplete:()=>{
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden','true');
+        document.body.style.overflow = '';
+        capa.innerHTML = '';
+      }});
     gsap.to(lid,{y:0,rotate:0,duration:.45,ease:'power3.inOut'});
-    if(window.ScrollTrigger) setTimeout(()=>ScrollTrigger.refresh(), 700);
   }
 
-  btn.addEventListener('click', ()=> abierto ? cerrar() : abrir());
+  btn.addEventListener('click', abrir);
+  cerrar.addEventListener('click', cerrarModal);
+  modal.addEventListener('click', e => { if(e.target === modal) cerrarModal(); });
+  document.addEventListener('keydown', e => { if(e.key === 'Escape' && abierto) cerrarModal(); });
 })();
+
 // ------ QR scan line ------
 const qrWrap = document.getElementById('qr-wrap');
 ScrollTrigger.create({trigger:qrWrap,start:'top 91%',once:true,onEnter:()=>qrWrap.classList.add('scanning')});
