@@ -683,6 +683,37 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:500;color:var(--accent);padding:
   border:1px solid var(--hair-gold);opacity:.55;pointer-events:none;
 }
 .gifts-panel > *{position:relative}
+
+/* ---- regalo que se abre con los datos de transferencia ---- */
+.gift-box-wrap{display:flex;flex-direction:column;align-items:center}
+.gift-box{
+  background:none;border:none;padding:0;cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+  display:flex;flex-direction:column;align-items:center;gap:12px;
+}
+.gift-box-art{width:118px;height:118px;position:relative;perspective:520px}
+.gift-box-art svg{width:100%;height:100%;display:block;overflow:visible}
+.gift-box-lid{transform-origin:50% 88%;transition:none}
+.gift-box:hover .gift-box-art{transform:translateY(-2px)}
+.gift-box-art{transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.gift-box-hint{
+  font-family:var(--sans);font-size:11px;font-weight:600;
+  letter-spacing:.3em;text-transform:uppercase;color:var(--gold-deep);
+  padding-left:.3em;transition:opacity .3s;
+}
+.gift-confetti{position:absolute;inset:-140px;pointer-events:none;overflow:visible;z-index:2}
+.gift-confetti i{position:absolute;left:50%;top:50%;display:block;border-radius:1px}
+
+.gift-reveal{
+  width:100%;overflow:hidden;max-height:0;opacity:0;
+  transition:max-height .6s cubic-bezier(.2,.7,.2,1),opacity .45s ease,margin-top .6s;
+  margin-top:0;
+}
+.gift-box-wrap.is-open .gift-reveal{max-height:760px;opacity:1;margin-top:30px}
+.gift-box-wrap.is-open .gift-box-hint{opacity:.55}
+@media (prefers-reduced-motion:reduce){
+  .gift-reveal{transition:none}
+}
 .gift-row + .gift-row{
   margin-top:26px;padding-top:26px;
   border-top:1px solid color-mix(in srgb, var(--gold) 20%, transparent);
@@ -740,8 +771,12 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:500;color:var(--accent);padding:
   text-transform:uppercase;color:var(--gold-deep);padding-left:.42em;
   white-space:nowrap;
 }
+/* direcciones en dos columnas para que ocupen menos */
+.gift-addrs{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:26px 30px;align-items:start;
+}
 .gift-addr{text-align:center}
-.gift-addr + .gift-addr{margin-top:20px}
 .gift-addr-zone{
   font-family:var(--display);font-style:italic;font-size:20px;
   color:var(--accent-deep);margin-bottom:4px;font-weight:500;
@@ -1307,15 +1342,20 @@ html.env-locked,body.env-locked{overflow:hidden;height:100%}
   text-shadow:0 2px 12px rgba(20,26,14,.7);
 }
 .verse-foto{
-  margin:38px auto 0;max-width:min(360px,80vw);
-  position:relative;padding:10px;
-  border:1px solid var(--hair-gold);background:var(--paper);
-  box-shadow:0 1px 2px rgba(46,61,36,.05),0 16px 44px -18px rgba(46,61,36,.28);
+  margin:30px auto 0;max-width:min(560px,92vw);
+  position:relative;padding:0;border:none;background:none;box-shadow:none;
 }
-.verse-foto img{display:block;width:100%;height:auto}
-.verse-foto::after{
-  content:"";position:absolute;inset:18px;
-  border:1px solid rgba(211,177,131,.42);pointer-events:none;
+.verse-foto img{
+  display:block;width:100%;height:auto;
+  /* dissolve: los cuatro bordes se funden con el fondo de la seccion */
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0%, rgba(0,0,0,.55) 9%, #000 20%, #000 80%, rgba(0,0,0,.55) 91%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, rgba(0,0,0,.55) 8%, #000 18%, #000 82%, rgba(0,0,0,.55) 92%, transparent 100%);
+  mask-image:
+    linear-gradient(to right, transparent 0%, rgba(0,0,0,.55) 9%, #000 20%, #000 80%, rgba(0,0,0,.55) 91%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, rgba(0,0,0,.55) 8%, #000 18%, #000 82%, rgba(0,0,0,.55) 92%, transparent 100%);
+  -webkit-mask-composite:source-in;
+  mask-composite:intersect;
 }
 .footer-despedida{
   font-family:var(--serif);font-style:italic;font-weight:500;
@@ -1713,7 +1753,7 @@ html.env-locked,body.env-locked{overflow:hidden;height:100%}
         <div class="wheel-item"><img src="g06.jpg" alt="Hitver y Oriana"></div>
       </div>
     </div>
-    <p class="wheel-hint">Arrastra para girar</p>
+    <p class="wheel-hint">Arrastra para girar · toca una foto para ampliarla</p>
   </section>
 
   <!-- DIVIDER: surface → paper -->
@@ -1746,47 +1786,82 @@ html.env-locked,body.env-locked{overflow:hidden;height:100%}
       <div class="gifts-head">
         <div class="eyebrow">Tu presencia es nuestro regalo</div>
         <h2>Mesa <em>de</em> regalos</h2>
-        <p class="gifts-sub">Si además quieres tener un detalle con nosotros, aquí te dejamos cómo</p>
+        <p class="gifts-sub">Si además quieres tener un detalle con nosotros, abre el regalo</p>
       </div>
       <div class="gifts-panel">
-        <div class="gift-row">
-          <div class="gift-row-name">Hitver</div>
-          <div class="gift-row-bank">Interbank · Cuenta Simple Soles</div>
-          <div class="gift-line">
-            <span class="gift-line-label">Cuenta</span>
-            <span class="gift-line-num">737 3144332565</span>
-            <button class="gift-copy copy-text" data-copy="7373144332565" aria-label="Copiar cuenta de Hitver">Copiar</button>
+        <div class="gift-box-wrap" id="giftBox">
+          <button class="gift-box" type="button" aria-expanded="false" aria-controls="giftReveal" aria-label="Abrir el regalo y ver los datos para transferencia">
+            <span class="gift-box-art">
+              <span class="gift-confetti" aria-hidden="true"></span>
+              <svg viewBox="0 0 120 120" aria-hidden="true">
+                <defs>
+                  <linearGradient id="gb-body" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#3f5233"/><stop offset="100%" stop-color="#22301a"/>
+                  </linearGradient>
+                  <linearGradient id="gb-lid" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#4a6039"/><stop offset="100%" stop-color="#2a3a20"/>
+                  </linearGradient>
+                  <linearGradient id="gb-gold" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#f2ddb4"/><stop offset="55%" stop-color="#d3b183"/><stop offset="100%" stop-color="#9d6c3c"/>
+                  </linearGradient>
+                </defs>
+                <ellipse cx="60" cy="112" rx="38" ry="5" fill="rgba(46,61,36,.22)"/>
+                <rect x="22" y="46" width="76" height="62" rx="4" fill="url(#gb-body)"/>
+                <rect x="53" y="46" width="14" height="62" fill="url(#gb-gold)" opacity=".92"/>
+                <g class="gift-box-lid">
+                  <rect x="16" y="32" width="88" height="18" rx="4" fill="url(#gb-lid)"/>
+                  <rect x="53" y="32" width="14" height="18" fill="url(#gb-gold)" opacity=".92"/>
+                  <path d="M60 32C60 22 50 14 42 18c-7 4-4 14 18 14z" fill="none" stroke="url(#gb-gold)" stroke-width="4.5" stroke-linejoin="round"/>
+                  <path d="M60 32c0-10 10-18 18-14 7 4 4 14-18 14z" fill="none" stroke="url(#gb-gold)" stroke-width="4.5" stroke-linejoin="round"/>
+                </g>
+              </svg>
+            </span>
+            <span class="gift-box-hint">Toca el regalo</span>
+          </button>
+
+          <div class="gift-reveal" id="giftReveal">
+          <div class="gift-row">
+            <div class="gift-row-name">Hitver</div>
+            <div class="gift-row-bank">Interbank · Cuenta Simple Soles</div>
+            <div class="gift-line">
+              <span class="gift-line-label">Cuenta</span>
+              <span class="gift-line-num">737 3144332565</span>
+              <button class="gift-copy copy-text" data-copy="7373144332565" aria-label="Copiar cuenta de Hitver">Copiar</button>
+            </div>
+            <div class="gift-line">
+              <span class="gift-line-label">CCI</span>
+              <span class="gift-line-num">0037 3701 3144 3325 6542</span>
+              <button class="gift-copy copy-text" data-copy="00373701314433256542" aria-label="Copiar CCI de Hitver">Copiar</button>
+            </div>
           </div>
-          <div class="gift-line">
-            <span class="gift-line-label">CCI</span>
-            <span class="gift-line-num">0037 3701 3144 3325 6542</span>
-            <button class="gift-copy copy-text" data-copy="00373701314433256542" aria-label="Copiar CCI de Hitver">Copiar</button>
+          <div class="gift-row">
+            <div class="gift-row-name">Oriana</div>
+            <div class="gift-row-bank">Interbank · Cuenta Simple Soles</div>
+            <div class="gift-line">
+              <span class="gift-line-label">Cuenta</span>
+              <span class="gift-line-num">898 3142908451</span>
+              <button class="gift-copy copy-text" data-copy="8983142908451" aria-label="Copiar cuenta de Oriana">Copiar</button>
+            </div>
+            <div class="gift-line">
+              <span class="gift-line-label">CCI</span>
+              <span class="gift-line-num">0038 9801 3142 9084 5143</span>
+              <button class="gift-copy copy-text" data-copy="00389801314290845143" aria-label="Copiar CCI de Oriana">Copiar</button>
+            </div>
           </div>
-        </div>
-        <div class="gift-row">
-          <div class="gift-row-name">Oriana</div>
-          <div class="gift-row-bank">Interbank · Cuenta Simple Soles</div>
-          <div class="gift-line">
-            <span class="gift-line-label">Cuenta</span>
-            <span class="gift-line-num">898 3142908451</span>
-            <button class="gift-copy copy-text" data-copy="8983142908451" aria-label="Copiar cuenta de Oriana">Copiar</button>
-          </div>
-          <div class="gift-line">
-            <span class="gift-line-label">CCI</span>
-            <span class="gift-line-num">0038 9801 3142 9084 5143</span>
-            <button class="gift-copy copy-text" data-copy="00389801314290845143" aria-label="Copiar CCI de Oriana">Copiar</button>
           </div>
         </div>
 
         <div class="gifts-sep"><span>o en casa</span></div>
 
-        <div class="gift-addr">
-          <div class="gift-addr-zone">Piura</div>
-          <div class="gift-addr-text">A.H. Almirante Miguel Grau<br>Mz F 08, Etapa 1</div>
-        </div>
-        <div class="gift-addr">
-          <div class="gift-addr-zone">Castilla</div>
-          <div class="gift-addr-text">UPIS Vive Hogar Castilla<br>Mz H4-41, Etapa 3</div>
+        <div class="gift-addrs">
+          <div class="gift-addr">
+            <div class="gift-addr-zone">Piura</div>
+            <div class="gift-addr-text">A.H. Almirante Miguel Grau<br>Mz F 08, Etapa 1</div>
+          </div>
+          <div class="gift-addr">
+            <div class="gift-addr-zone">Castilla</div>
+            <div class="gift-addr-text">UPIS Vive Hogar Castilla<br>Mz H4-41, Etapa 3</div>
+          </div>
         </div>
       </div>
 
@@ -1891,7 +1966,7 @@ html.env-locked,body.env-locked{overflow:hidden;height:100%}
         </g>
       </svg>
       <div class="footer-names">Hitver <span class="amp">&amp;</span> Oriana</div>
-      <div class="footer-date">XII · IX · 2026 · Piura</div>
+      <div class="footer-date">12 · 09 · 2026 · Piura</div>
       <p class="footer-despedida">Gracias por acompañarnos en uno de los días más felices de nuestras vidas.</p>
       <div class="footer-credit">
         <span class="credit-label">Invitación diseñada por</span>
@@ -2235,25 +2310,42 @@ gsap.fromTo('.dc-fig',{opacity:0,y:18},{opacity:1,y:0,duration:.7,stagger:.12,ea
     onLeaveBack: stopAutoSpin
   });
 
+  // se distingue un toque de un arrastre para no abrir el visor al girar
+  let downX = 0, downY = 0, moved = 0, downCard = null;
+
+  function armarToque(e, card){
+    downX = e.clientX; downY = e.clientY; moved = 0; downCard = card;
+  }
+  function soltarToque(e){
+    if(downCard && moved < 8){
+      const img = downCard.querySelector('img');
+      if(img && window.abrirLightbox) window.abrirLightbox(img.src, img.alt);
+    }
+    downCard = null;
+  }
+
   ring.addEventListener('mousedown', function(e){
     cancelAnimationFrame(rafId);
     stopAutoSpin();
     isDrag = true; vel = 0;
     startX = e.clientX; startRot = rot; lastX = e.clientX;
     ring.classList.add('dragging');
+    armarToque(e, e.target.closest('.wheel-item'));
   });
   window.addEventListener('mousemove', function(e){
     if(!isDrag) return;
+    moved = Math.max(moved, Math.abs(e.clientX - downX) + Math.abs(e.clientY - downY));
     const dx = e.clientX - startX;
     vel = (e.clientX - lastX) * 0.5;
     lastX = e.clientX;
     setRot(startRot + dx * 0.45);
   });
-  window.addEventListener('mouseup', function(){
+  window.addEventListener('mouseup', function(e){
     if(!isDrag) return;
     isDrag = false;
     ring.classList.remove('dragging');
     rafId = requestAnimationFrame(inertia);
+    soltarToque(e);
   });
 
   ring.addEventListener('touchstart', function(e){
@@ -2261,18 +2353,21 @@ gsap.fromTo('.dc-fig',{opacity:0,y:18},{opacity:1,y:0,duration:.7,stagger:.12,ea
     stopAutoSpin();
     isDrag = true; vel = 0;
     startX = e.touches[0].clientX; startRot = rot; lastX = startX;
+    armarToque(e.touches[0], e.target.closest('.wheel-item'));
   }, { passive: true });
   window.addEventListener('touchmove', function(e){
     if(!isDrag) return;
+    moved = Math.max(moved, Math.abs(e.touches[0].clientX - downX) + Math.abs(e.touches[0].clientY - downY));
     const dx = e.touches[0].clientX - startX;
     vel = (e.touches[0].clientX - lastX) * 0.5;
     lastX = e.touches[0].clientX;
     setRot(startRot + dx * 0.45);
   }, { passive: true });
-  window.addEventListener('touchend', function(){
+  window.addEventListener('touchend', function(e){
     if(!isDrag) return;
     isDrag = false;
     rafId = requestAnimationFrame(inertia);
+    soltarToque((e.changedTouches && e.changedTouches[0]) || {clientX:downX, clientY:downY});
   });
 
   // entrada animada
@@ -2314,8 +2409,7 @@ gsap.fromTo('.wheel-hint',{opacity:0,y:8},{opacity:.72,y:0,duration:.9,scrollTri
       }});
   }
 
-  // En el nuevo carrusel 3D arrastrable, el click se reserva para girar — no abre lightbox.
-  // El lightbox queda disponible para otros usos.
+  window.abrirLightbox = openLightbox;
 
   lb.addEventListener('click', (e)=>{ if(e.target === lb) closeLightbox(); });
   lbCls.addEventListener('click', closeLightbox);
@@ -2333,7 +2427,60 @@ gsap.fromTo('.kids-policy .eyebrow, .kids-policy h2, .kids-text',{opacity:0,y:18
 // ------ GIFTS ------
 gsap.fromTo('.gifts-head > *',{opacity:0,y:18},{opacity:1,y:0,duration:1,stagger:.1,scrollTrigger:{trigger:'.gifts-head',start:'top 91%'}});
 gsap.fromTo('.gifts-panel',{opacity:0,y:26,scale:.97},{opacity:1,y:0,scale:1,duration:1.2,ease:'power4.out',scrollTrigger:{trigger:'.gifts-panel',start:'top 92%'}});
-gsap.fromTo('.gift-row, .gifts-sep, .gift-addr',{opacity:0,y:16},{opacity:1,y:0,duration:.9,stagger:.09,ease:'power3.out',scrollTrigger:{trigger:'.gifts-panel',start:'top 91%'}});
+gsap.fromTo('.gift-box, .gifts-sep, .gift-addr',{opacity:0,y:16},{opacity:1,y:0,duration:.9,stagger:.09,ease:'power3.out',scrollTrigger:{trigger:'.gifts-panel',start:'top 91%'}});
+
+// ------ REGALO: se abre, suelta confeti y muestra los datos ------
+(function(){
+  const wrap = document.getElementById('giftBox');
+  if(!wrap) return;
+  const btn   = wrap.querySelector('.gift-box');
+  const lid   = wrap.querySelector('.gift-box-lid');
+  const capa  = wrap.querySelector('.gift-confetti');
+  const hint  = wrap.querySelector('.gift-box-hint');
+  const TONOS = ['#d3b183','#9d6c3c','#6b842d','#5f8575','#f2ddb4','#f3bfcd','#fde3ea'];
+  let abierto = false;
+
+  function confeti(){
+    if(prefersReduced) return;
+    for(let i=0;i<46;i++){
+      const p = document.createElement('i');
+      const ancho = 5 + Math.random()*5;
+      p.style.width = ancho+'px';
+      p.style.height = (ancho*(0.4+Math.random()*0.9))+'px';
+      p.style.background = TONOS[(Math.random()*TONOS.length)|0];
+      capa.appendChild(p);
+
+      const ang = (-90 + (Math.random()-.5)*128) * Math.PI/180;
+      const fza = 90 + Math.random()*140;
+      gsap.timeline({onComplete:()=>p.remove()})
+        .fromTo(p,{x:0,y:0,opacity:1,scale:.6,rotate:Math.random()*360},
+                  {x:Math.cos(ang)*fza, y:Math.sin(ang)*fza, scale:1, duration:.62, ease:'power2.out'},0)
+        .to(p,{y:'+='+(150+Math.random()*130), rotate:'+='+((Math.random()-.5)*640),
+               duration:1.5+Math.random()*.7, ease:'power1.in'},.6)
+        .to(p,{opacity:0,duration:.5,ease:'power1.in'},1.6);
+    }
+  }
+
+  function abrir(){
+    abierto = true;
+    wrap.classList.add('is-open');
+    btn.setAttribute('aria-expanded','true');
+    hint.textContent = 'Toca para cerrar';
+    gsap.to(lid,{y:-30,rotate:-16,duration:.5,ease:'back.out(1.7)'});
+    confeti();
+    if(window.ScrollTrigger) setTimeout(()=>ScrollTrigger.refresh(), 700);
+  }
+  function cerrar(){
+    abierto = false;
+    wrap.classList.remove('is-open');
+    btn.setAttribute('aria-expanded','false');
+    hint.textContent = 'Toca el regalo';
+    gsap.to(lid,{y:0,rotate:0,duration:.45,ease:'power3.inOut'});
+    if(window.ScrollTrigger) setTimeout(()=>ScrollTrigger.refresh(), 700);
+  }
+
+  btn.addEventListener('click', ()=> abierto ? cerrar() : abrir());
+})();
 // ------ QR scan line ------
 const qrWrap = document.getElementById('qr-wrap');
 ScrollTrigger.create({trigger:qrWrap,start:'top 91%',once:true,onEnter:()=>qrWrap.classList.add('scanning')});
