@@ -1924,7 +1924,7 @@ html.env-locked,body.env-locked{overflow:hidden;height:100%}
 
           <div class="eyebrow">Confirma tu asistencia</div>
           <h2 class="rsvp-title">Tu presencia <em>lo</em> es todo</h2>
-          <p class="rsvp-text">Por favor confírmanos tu asistencia antes del <strong>15 de agosto de 2026</strong>. Nos encantará saber que estarás con nosotros.</p>
+          <p class="rsvp-text">Por favor confírmanos tu asistencia antes del <strong>29 de agosto de 2026</strong>. Nos encantará saber que estarás con nosotros.</p>
 
           <div class="rsvp-divider">
             <svg class="rsvp-divider-heart" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/></svg>
@@ -1954,7 +1954,7 @@ html.env-locked,body.env-locked{overflow:hidden;height:100%}
 
           <div class="rsvp-deadline">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5z"/></svg>
-            Fecha límite · 15 de agosto de 2026
+            Fecha límite · 29 de agosto de 2026
           </div>
         </div>
       </div>
@@ -2703,7 +2703,7 @@ window.addEventListener('resize',()=>ScrollTrigger.refresh());
 (function(){
   var PANEL_API = 'https://panel-invitados.vercel.app/api/confirmar';
   var RSVP_URL  = 'https://boda-hitver-y-oriana.vercel.app';
-  var DEADLINE  = new Date(2026, 7, 15, 23, 59, 59, 999);
+  var DEADLINE  = new Date(2026, 7, 29, 23, 59, 59, 999);
   var frozen    = Date.now() > DEADLINE.getTime();
 
   var params = new URLSearchParams(window.location.search);
@@ -3028,6 +3028,34 @@ document.querySelectorAll('.foto-band').forEach(band=>{
     onEnter:()=>band.classList.add('is-visible')
   });
 });
+</script>
+<script>
+/* ELYSIUM AUDIO UNLOCK v1 — la musica se estrena DENTRO del primer gesto real del invitado.
+   iOS/Chrome retiran el permiso del gesto a los pocos ms, asi que un play() que corre al
+   terminar el video del sobre llega tarde y es rechazado en silencio. */
+(function(){
+  if(window.__elyAudioUnlock) return; window.__elyAudioUnlock=1;
+  var done=false, tries=0;
+  function A(){ return document.querySelector('audio'); }
+  function unlock(){
+    if(done) return;
+    var a=A(); if(!a) return;
+    try{ if(a.preload==='none'){ a.preload='auto'; a.load(); } }catch(e){}
+    if(!a.paused){ done=true; return; }
+    var p;
+    try{ p=a.play(); }catch(e){ return; }
+    if(p && p.then){ p.then(function(){ done=true; }).catch(function(){}); }
+    else { done=true; }
+  }
+  ['pointerdown','touchstart','touchend','click','keydown'].forEach(function(ev){
+    document.addEventListener(ev, unlock, {capture:true, passive:true});
+  });
+  var iv=setInterval(function(){
+    var a=A();
+    if(done || (a && !a.paused)){ done=true; clearInterval(iv); return; }
+    if(++tries>120) clearInterval(iv);
+  },1000);
+})();
 </script>
 </body>
 </html>
